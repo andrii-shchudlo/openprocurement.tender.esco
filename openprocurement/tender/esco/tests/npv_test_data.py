@@ -1,3 +1,6 @@
+from datetime import date
+
+
 NPV_PERIODS = 21
 NBU_DISCOUNT_RATE = 0.125
 ANNUAL_COSTS_REDUCTION = [
@@ -8,7 +11,7 @@ ANNUAL_COSTS_REDUCTION = [
 CONTRACT_DURATION_CHANGING = {
     'yearlyPaymentsPercentage': 0.70,
     'annualCostsReduction': ANNUAL_COSTS_REDUCTION,
-    'announcementDate': '2017-08-18',
+    'announcementDate': date(2017, 8, 18),
     'contractDuration': [
         {'years': 15, 'days': 0},
         {'years': 0, 'days': 1},
@@ -79,16 +82,16 @@ ANNOUNCEMENT_DATE_CHANGING = {
         'days': 10,
     },
     'announcementDate': [
-        '2017-05-02',
-        '2017-05-03',
-        '2017-05-04',
-        '2017-05-05',
-        '2017-05-06',
-        '2017-05-07',
-        '2017-05-08',
-        '2017-05-09',
-        '2017-05-10',
-        '2017-05-11',
+        date(2017, 5, 2),
+        date(2017, 5, 3),
+        date(2017, 5, 4),
+        date(2017, 5, 5),
+        date(2017, 5, 6),
+        date(2017, 5, 7),
+        date(2017, 5, 8),
+        date(2017, 5, 9),
+        date(2017, 5, 10),
+        date(2017, 5, 11),
     ],
     'NBUdiscountRate': NBU_DISCOUNT_RATE,
     'calculated': [
@@ -153,7 +156,7 @@ PAYMENTS_PERCENTAGE_CHANGING = {
         'years': 2,
         'days': 10,
     },
-    'announcementDate': '2017-08-18',
+    'announcementDate': date(2017, 8, 18),
     'NBUdiscountRate': NBU_DISCOUNT_RATE,
     'calculated': [
         {
