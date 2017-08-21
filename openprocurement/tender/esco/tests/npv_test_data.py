@@ -70,3 +70,67 @@ CONTRACT_DURATION_CHANGING = {
         },
     ]
 }
+
+ANNOUNCEMENT_DATE_CHANGING = {
+    'yearlyPaymentsPercentage': 0.70,
+    'annualCostsReduction': ANNUAL_COSTS_REDUCTION,
+    'contractDuration': {
+        'years': 2,
+        'days': 10,
+    },
+    'announcementDate': [
+        '2017-05-02',
+        '2017-05-03',
+        '2017-05-04',
+        '2017-05-05',
+        '2017-05-06',
+        '2017-05-07',
+        '2017-05-08',
+        '2017-05-09',
+        '2017-05-10',
+        '2017-05-11',
+    ],
+    'NBUdiscountRate': NBU_DISCOUNT_RATE,
+    'calculated': [
+        {
+            'amountContract': 303.016671232877,
+            'amountPerformance': 1493.11261864549
+        },
+        {
+            'amountContract': 303.496123287671,
+            'amountPerformance': 1493.29714530232
+        },
+        {
+            'amountContract': 303.975575342466,
+            'amountPerformance': 1493.48174786072
+        },
+        {
+            'amountContract': 304.455027397260,
+            'amountPerformance': 1493.66642643300
+        },
+        {
+            'amountContract': 304.934479452055,
+            'amountPerformance': 1493.85118113158
+        },
+        {
+            'amountContract': 305.413931506849,
+            'amountPerformance': 1494.03601206895
+        },
+        {
+            'amountContract': 305.893383561644,
+            'amountPerformance': 1494.22091935769
+        },
+        {
+            'amountContract': 306.372835616438,
+            'amountPerformance': 1494.40590311049
+        },
+        {
+            'amountContract': 306.852287671233,
+            'amountPerformance': 1494.59096344011
+        },
+        {
+            'amountContract': 307.331739726027,
+            'amountPerformance': 1494.77610045941
+        },
+    ]
+}
