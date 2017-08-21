@@ -1,66 +1,200 @@
-from fractions import Fraction
+NPV_PERIODS = 21
+NBU_DISCOUNT_RATE = 0.125
+ANNUAL_COSTS_REDUCTION = [
+    92.47, 250, 250, 250, 250, 250, 250, 250,
+    250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250
+]
 
+CONTRACT_DURATION_CHANGING = {
+    'yearlyPaymentsPercentage': 0.70,
+    'annualCostsReduction': ANNUAL_COSTS_REDUCTION,
+    'announcementDate': '2017-08-18',
+    'contractDuration': [
+        {'years': 15, 'days': 0},
+        {'years': 0, 'days': 1},
+        {'years': 3, 'days': 11},
+        {'years': 3, 'days': 12},
+        {'years': 3, 'days': 13},
+        {'years': 3, 'days': 14},
+        {'years': 3, 'days': 15},
+        {'years': 4, 'days': 15},
+        {'years': 5, 'days': 15},
+        {'years': 6, 'days': 15},
+        {'years': 7, 'days': 15},
+    ],
+    'NBUdiscountRate': NBU_DISCOUNT_RATE,
+    'calculated': [
+        {
+            'amountContract': 2625,
+            'amountPerformance': 650.193823614962
+        },
+        {
+            'amountContract': 0.479452054794521,
+            'amountPerformance': 1810.49202999925
+        },
+        {
+            'amountContract': 530.27397260274,
+            'amountPerformance': 1390.67464457115
+        },
+        {
+            'amountContract': 530.753424657534,
+            'amountPerformance': 1390.35279031706
+        },
+        {
+            'amountContract': 531.232876712329,
+            'amountPerformance': 1390.03093606298
+        },
+        {
+            'amountContract': 531.712328767123,
+            'amountPerformance': 1389.70908180889
+        },
+        {
+            'amountContract': 532.191780821918,
+            'amountPerformance': 1389.38722755481
+        },
+        {
+            'amountContract': 707.191780821918,
+            'amountPerformance': 1280.67201284187
+        },
+        {
+            'amountContract': 882.191780821918,
+            'amountPerformance': 1184.03626643037
+        },
+        {
+            'amountContract': 1057.191780821920,
+            'amountPerformance': 1098.13782517570
+        },
+        {
+            'amountContract': 1232.191780821920,
+            'amountPerformance': 1021.78365517155
+        },
+    ]
+}
 
-DISCOUNT_COEF = {'first_test': [Fraction(100000, 104623), Fraction(800000, 941607), Fraction(6400000, 8474463),
-                            Fraction(51200000, 76270167), Fraction(409600000, 686431503), Fraction(3276800000, 6177883527),
-                            Fraction(26214400000, 55600951743), Fraction(209715200000, 500408565687),
-                            Fraction(1677721600000, 4503677091183), Fraction(13421772800000, 40533093820647),
-                            Fraction(107374182400000, 364797844385823), Fraction(858993459200000, 3283180599472407),
-                            Fraction(6871947673600000, 29548625395251663), Fraction(54975581388800000, 265937628557264967),
-                            Fraction(439804651110400000, 2393438657015384703), Fraction(3518437208883200000, 21540947913138462327),
-                            Fraction(28147497671065600000, 193868531218246160943), Fraction(225179981368524800000, 1744816780964215448487),
-                            Fraction(1801439850948198400000, 15703351028677939036383), Fraction(14411518807585587200000, 141330159258101451327447),
-                            Fraction(1441151880758558720000000000, 15246273590286210264851000019)],
+ANNOUNCEMENT_DATE_CHANGING = {
+    'yearlyPaymentsPercentage': 0.70,
+    'annualCostsReduction': ANNUAL_COSTS_REDUCTION,
+    'contractDuration': {
+        'years': 2,
+        'days': 10,
+    },
+    'announcementDate': [
+        '2017-05-02',
+        '2017-05-03',
+        '2017-05-04',
+        '2017-05-05',
+        '2017-05-06',
+        '2017-05-07',
+        '2017-05-08',
+        '2017-05-09',
+        '2017-05-10',
+        '2017-05-11',
+    ],
+    'NBUdiscountRate': NBU_DISCOUNT_RATE,
+    'calculated': [
+        {
+            'amountContract': 303.016671232877,
+            'amountPerformance': 1493.11261864549
+        },
+        {
+            'amountContract': 303.496123287671,
+            'amountPerformance': 1493.29714530232
+        },
+        {
+            'amountContract': 303.975575342466,
+            'amountPerformance': 1493.48174786072
+        },
+        {
+            'amountContract': 304.455027397260,
+            'amountPerformance': 1493.66642643300
+        },
+        {
+            'amountContract': 304.934479452055,
+            'amountPerformance': 1493.85118113158
+        },
+        {
+            'amountContract': 305.413931506849,
+            'amountPerformance': 1494.03601206895
+        },
+        {
+            'amountContract': 305.893383561644,
+            'amountPerformance': 1494.22091935769
+        },
+        {
+            'amountContract': 306.372835616438,
+            'amountPerformance': 1494.40590311049
+        },
+        {
+            'amountContract': 306.852287671233,
+            'amountPerformance': 1494.59096344011
+        },
+        {
+            'amountContract': 307.331739726027,
+            'amountPerformance': 1494.77610045941
+        },
+    ]
+}
 
-                 'second_test': [Fraction(1, 1)]*21,
-
-                 'third_test': [Fraction(8, 9), Fraction(64, 81), Fraction(512, 729), Fraction(4096, 6561), Fraction(32768, 59049),
-                                Fraction(262144, 531441), Fraction(2097152, 4782969), Fraction(16777216, 43046721),
-                                Fraction(134217728, 387420489), Fraction(1073741824, 3486784401), Fraction(8589934592, 31381059609),
-                                Fraction(68719476736, 282429536481), Fraction(549755813888, 2541865828329), Fraction(4398046511104, 22876792454961),
-                                Fraction(35184372088832, 205891132094649), Fraction(281474976710656, 1853020188851841),
-                                Fraction(2251799813685248, 16677181699666569), Fraction(18014398509481984, 150094635296999121),
-                                Fraction(144115188075855872, 1350851717672992089), Fraction(1152921504606846976, 12157665459056928801),
-                                Fraction(9223372036854775808, 109418989131512359209)]
-                 }
-
-DISCOUNT_RATE = {'first_test': [Fraction(str(0.04623))]+[Fraction(str(0.125))]*19 + [Fraction(str(0.07877))],
-                 'second_test': [Fraction(str(0))]*21,
-                 'third_test': [Fraction(str(0.12500))] * 21
-                 }
-
-DISCOUNTED_INCOME_COEF = {'input_data': [Fraction(str(0.956)),
-                          Fraction(str(0.850)), Fraction(str(0.755)),
-                          Fraction(str(0.671)), Fraction(str(0.597)),
-                          Fraction(str(0.530)), Fraction(str(0.471)),
-                          Fraction(str(0.419)), Fraction(str(0.373)),
-                          Fraction(str(0.331)), Fraction(str(0.294)),
-                          Fraction(str(0.262)), Fraction(str(0.233)),
-                          Fraction(str(0.207)), Fraction(str(0.184)),
-                          Fraction(str(0.163)), Fraction(str(0.145)),
-                          Fraction(str(0.129)), Fraction(str(0.115)),
-                          Fraction(str(0.102)), Fraction(str(0.095))]
-                          }
-INCOME_CUSTOMER = {'first_test': [Fraction(str(27.74))]+[Fraction(str(75.00))]+[Fraction(str(91.78))] +
-                                 [Fraction(str(139.73))]+[Fraction(str(250.00))]*16+[Fraction(str(157.53))],
-
-                   'second_test': [Fraction(str(0.095))]*21
-                   }
-
-DISCOUNTED_INCOME_RES = {'first_test':[Fraction(331493, 12500), Fraction(255, 4), Fraction(692939, 10000),
-                                       Fraction(9375883, 100000), Fraction(597, 4), Fraction(265, 2), Fraction(471, 4),
-                                       Fraction(419, 4), Fraction(373, 4), Fraction(331, 4), Fraction(147, 2),
-                                       Fraction(131, 2), Fraction(233, 4), Fraction(207, 4), Fraction(46, 1),
-                                       Fraction(163, 4),  Fraction(145, 4), Fraction(129, 4), Fraction(115, 4),
-                                       Fraction(51, 2), Fraction(299307, 20000)],
-
-                         'second_test': [Fraction(4541, 50000), Fraction(323, 4000), Fraction(2869, 40000),
-                                         Fraction(12749, 200000), Fraction(11343, 200000), Fraction(1007, 20000),
-                                         Fraction(8949, 200000), Fraction(7961, 200000), Fraction(7087, 200000),
-                                         Fraction(6289, 200000), Fraction(2793, 100000), Fraction(2489, 100000),
-                                         Fraction(4427, 200000), Fraction(3933, 200000), Fraction(437, 25000),
-                                         Fraction(3097, 200000), Fraction(551, 40000), Fraction(2451, 200000),
-                                         Fraction(437, 40000), Fraction(969, 100000), Fraction(361, 40000)]
-
-                         }
-
+PAYMENTS_PERCENTAGE_CHANGING = {
+    'yearlyPaymentsPercentage': [
+        0.7100,
+        0.7200,
+        0.7300,
+        0.7400,
+        0.7500,
+        0.7600,
+        0.7700,
+        0.7800,
+        0.7900,
+        0.8000,
+    ],
+    'annualCostsReduction': ANNUAL_COSTS_REDUCTION,
+    'contractDuration': {
+        'years': 2,
+        'days': 10,
+    },
+    'announcementDate': '2017-08-18',
+    'NBUdiscountRate': NBU_DISCOUNT_RATE,
+    'calculated': [
+        {
+            'amountContract': 359.866028767123,
+            'amountPerformance': 1509.25419393209
+        },
+        {
+            'amountContract': 364.934564383562,
+            'amountPerformance': 1505.00489590214
+        },
+        {
+            'amountContract': 370.003100000000,
+            'amountPerformance': 1500.75559787220
+        },
+        {
+            'amountContract': 375.071635616438,
+            'amountPerformance': 1496.50629984225
+        },
+        {
+            'amountContract': 380.140171232877,
+            'amountPerformance': 1492.25700181231
+        },
+        {
+            'amountContract': 385.208706849315,
+            'amountPerformance': 1488.00770378236
+        },
+        {
+            'amountContract': 390.277242465753,
+            'amountPerformance': 1483.75840575242
+        },
+        {
+            'amountContract': 395.345778082192,
+            'amountPerformance': 1479.50910772247
+        },
+        {
+            'amountContract': 400.414313698630,
+            'amountPerformance': 1475.25980969253
+        },
+        {
+            'amountContract': 405.482849315069,
+            'amountPerformance': 1471.01051166258
+        },
+    ]
+}
