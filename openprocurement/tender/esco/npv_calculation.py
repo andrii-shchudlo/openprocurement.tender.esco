@@ -3,6 +3,7 @@ from fractions import Fraction
 from openprocurement.tender.esco.constants import DAYS_PER_YEAR, NPV_CALCULATION_DURATION
 
 
+
 def calculate_contract_duration(
         contract_duration_years,
         contract_duration_days,
@@ -132,7 +133,7 @@ def calculate_amount_perfomance(data):
     income = calculate_income(data['annualCostsReduction'], days_for_discount_rate, days_with_cost_reduction, payments)
     discounted_income = calculate_discounted_income(discount_coef, income)
     npv = calculate_sum(discounted_income)
-    return round(npv, 10)
+    return float(npv)
 
 
 def calculate_amount_contract(data):
@@ -143,4 +144,4 @@ def calculate_amount_contract(data):
     payments = calculate_payments(data['yearlyPaymentsPercentage'], data['annualCostsReduction'], days_with_payments,
                                   days_for_discount_rate)
     tcp = calculate_sum(payments)
-    return round(tcp, 10)
+    return float(tcp)
