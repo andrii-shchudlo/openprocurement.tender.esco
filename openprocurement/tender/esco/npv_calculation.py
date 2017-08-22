@@ -76,9 +76,24 @@ def calculate_payment(
         days_with_payments,
         days_for_discount_rate):
     '''Calculates client payment to a participant'''
+
     if days_with_payments > 0:
-        return (Fraction(Fraction(str(yearly_payments_percentage))) * Fraction(str(client_cost_reduction)) *
-                (Fraction(Fraction(str(days_with_payments)), Fraction(str(days_for_discount_rate)))))
+        # Transormation Fraction(str(float)) is done because of its
+        # better precision than Fraction(float).
+        #
+        # For example:
+        # >>> Fraction(str(0.2))
+        # Fraction(1, 5)
+        # >>> Fraction(0.2)
+        # Fraction(3602879701896397, 18014398509481984)
+
+        yearly_payments_percentage = Fraction(
+            str(yearly_payments_percentage)
+        )
+        client_cost_reduction = Fraction(str(client_cost_reduction))
+
+        return (yearly_payments_percentage * client_cost_reduction *
+                Fraction(days_with_payments, days_for_discount_rate))
     return 0
 
 
