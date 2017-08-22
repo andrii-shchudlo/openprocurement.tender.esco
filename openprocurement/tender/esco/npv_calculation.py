@@ -29,9 +29,9 @@ def calculate_discount_rate(
         days_for_discount_rate,
         nbu_discount_rate,
         days_per_year=DAYS_PER_YEAR):
-    return Fraction(str(nbu_discount_rate)) * Fraction(Fraction(str(days_for_discount_rate)), Fraction(str(days_per_year)))
     '''Calculates discount rate according to the law'''
 
+    return Fraction(str(nbu_discount_rate)) * Fraction(days_for_discount_rate, days_per_year)
 
 def calculate_discount_rates(
         days_for_discount_rates,
