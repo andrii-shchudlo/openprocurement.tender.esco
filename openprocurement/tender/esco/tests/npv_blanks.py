@@ -1,159 +1,83 @@
+from copy import deepcopy
 from datetime import date
-from openprocurement.tender.esco.tests.npv_test_data import (
-    DISCOUNT_COEF,
-    DISCOUNT_RATE,
-    DISCOUNTED_INCOME_COEF,
-    INCOME_CUSTOMER,
-    DISCOUNTED_INCOME_RES,
-)
-from openprocurement.tender.esco.constants import DAYS_PER_YEAR, NPV_CALCULATION_DURATION
 from openprocurement.tender.esco.npv_calculation import (
-    calculate_contract_duration,
-    calculate_discount_rate,
-    calculate_discount_rates,
-    calculate_discounted_income,
-    calculate_discount_coef,
-    calculate_days_with_cost_reduction,
+    calculate_amount_perfomance,
+    calculate_amount_contract,
+)
+from openprocurement.tender.esco.tests.npv_test_data import (
+    CONTRACT_DURATION_CHANGING,
+    ANNOUNCEMENT_DATE_CHANGING,
+    PAYMENTS_PERCENTAGE_CHANGING,
 )
 
-nbu_rate = 0.22
 
-def discount_coef(self):
-    self.assertEqual(
-        calculate_discount_coef(DISCOUNT_RATE['first_test']),
-        DISCOUNT_COEF['first_test']
-    )
-
-    self.assertEqual(
-        calculate_discount_coef(DISCOUNT_RATE['second_test']),
-        DISCOUNT_COEF['second_test']
-    )
-
-    self.assertEqual(
-        calculate_discount_coef(DISCOUNT_RATE['third_test']),
-        DISCOUNT_COEF['third_test']
-    )
+def _str(number, max_length=15):
+    number_str = '{:.{}f}'.format(number, max_length)
+    integer_part, _ = number_str.split('.')
+    precision = max_length - len(integer_part)
+    return '{:.{}f}'.format(number, precision)
 
 
-def contract_duration(self):
-    # Minimal contract duration
-    years = 0
-    days = 1
-    self.assertEqual(
-        calculate_contract_duration(years, days),
-        years * DAYS_PER_YEAR + days,
-    )
+def contract_duration_change(self):
+    data = deepcopy(CONTRACT_DURATION_CHANGING)
+    contract_durations = data.pop('contractDuration')
 
-    years = 0
-    days = 364
-    self.assertEqual(
-        calculate_contract_duration(years, days),
-        years * DAYS_PER_YEAR + days,
-    )
+    for i, contract_duration in enumerate(contract_durations):
+        data['contractDuration'] = contract_duration
 
-    years = 5
-    days = 275
-    self.assertEqual(
-        calculate_contract_duration(years, days),
-        years * DAYS_PER_YEAR + days,
-    )
-
-    # Max contract duration
-    years = 15
-    days = 0
-    self.assertEqual(
-        calculate_contract_duration(years, days),
-        years * DAYS_PER_YEAR + days,
-    )
-
-
-def discount_rate(self):
-    # Predefined value
-    nbu_rate = 12.5
-    days = 135
-    self.assertEqual(
-        calculate_discount_rate(days, nbu_rate),
-        4.623287671232877,
-    )
-
-    # Divide 100% by n parts and check if nbu_rate is the same as
-    # nbu_rate * DAYS_PER_YEAR / DAYS_PER_YEAR
-    n = 97
-    for i in range(n + 1):
-        nbu_rate = (i / float(n)) * 100
-        days = DAYS_PER_YEAR
+        amount_perfomance = calculate_amount_perfomance(data)
         self.assertEqual(
-            calculate_discount_rate(days, nbu_rate, DAYS_PER_YEAR),
-            nbu_rate,
+            _str(amount_perfomance),
+            _str(CONTRACT_DURATION_CHANGING
+                 ['calculated'][i]['amountPerformance'])
+        )
+
+        amount_contract = calculate_amount_contract(data)
+        self.assertEqual(
+            _str(amount_contract),
+            _str(CONTRACT_DURATION_CHANGING
+                 ['calculated'][i]['amountContract'])
         )
 
 
-def discount_rates(self):
-    periods = 21
+def announcement_date_change(self):
+    data = deepcopy(ANNOUNCEMENT_DATE_CHANGING)
+    announcement_dates = data.pop('announcementDate')
 
-    # All days for discount rate are zeros
-    empty = [0] * periods
-    empty_rates = calculate_discount_rates(empty, nbu_rate)
-    self.assertEqual(len(empty), len(empty_rates))
-    for rate in empty_rates:
-        self.assertEqual(rate, 0)
+    for i, announcement_date in enumerate(announcement_dates):
+        data['announcementDate'] = announcement_date
 
-    # All days for discount rate are equal to DAYS_PER_YEAR
-    days = [DAYS_PER_YEAR] * periods
-    calculated_rates = calculate_discount_rates(days, nbu_rate)
-    self.assertEqual(len(days), len(calculated_rates))
-    for rate in calculated_rates:
-        self.assertEqual(rate, nbu_rate)
-
-    # All days for discount rate are DIFFERENT
-    # This code checks if calculated rates are also DIFFERENT
-    days_increment = int(DAYS_PER_YEAR / periods)
-    days = [(i + 1) * days_increment for i in range(21)]
-    calculated_rates = calculate_discount_rates(days, nbu_rate)
-    for (i, rate) in enumerate(calculated_rates):
-        checking_rates = calculated_rates[i + 1:]
-        for checking_rate in checking_rates:
-            self.assertNotEqual(rate, checking_rate)
-
-    # Predefined first and last value
-    new_nbu_rate = 12.5
-    predefined_rate1 = 4.623287671232877
-    predefined_rate2 = 7.876712328767123
-
-    days = [135] + [0] * (periods - 2) + [230]
-    calculated_rates = calculate_discount_rates(days, new_nbu_rate)
-    self.assertEqual(len(days), len(calculated_rates))
-    self.assertEqual(calculated_rates[0], predefined_rate1)
-    self.assertEqual(calculated_rates[-1], predefined_rate2)
+        amount_perfomance = calculate_amount_perfomance(data)
+        self.assertEqual(
+            _str(amount_perfomance),
+            _str(ANNOUNCEMENT_DATE_CHANGING
+                 ['calculated'][i]['amountPerformance'])
+        )
+        amount_contract = calculate_amount_contract(data)
+        self.assertEqual(
+            _str(amount_contract),
+            _str(ANNOUNCEMENT_DATE_CHANGING
+                 ['calculated'][i]['amountContract'])
+        )
 
 
-def discounted_income(self):
-    self.assertEqual(
-        calculate_discounted_income(DISCOUNTED_INCOME_COEF['input_data'], INCOME_CUSTOMER['first_test']),
-        DISCOUNTED_INCOME_RES['first_test']
-    )
+def payments_percentage_change(self):
+    data = deepcopy(PAYMENTS_PERCENTAGE_CHANGING)
+    payments_percentages = data.pop('yearlyPaymentsPercentage')
 
-    self.assertEqual(
-        calculate_discounted_income(DISCOUNTED_INCOME_COEF['input_data'], INCOME_CUSTOMER['second_test']),
-        DISCOUNTED_INCOME_RES['second_test']
-    )
+    for i, payments_percentage in enumerate(payments_percentages):
+        data['yearlyPaymentsPercentage'] = payments_percentage
 
+        amount_perfomance = calculate_amount_perfomance(data)
+        self.assertEqual(
+            _str(amount_perfomance),
+            _str(PAYMENTS_PERCENTAGE_CHANGING
+                 ['calculated'][i]['amountPerformance'])
+        )
 
-def days_with_cost_reduction(self):
-    announcement_date = date(2017, 8, 18)
-    self.assertEqual(
-        calculate_days_with_cost_reduction(announcement_date, DAYS_PER_YEAR),
-        [135] + [365] * NPV_CALCULATION_DURATION
-    )
-
-    announcement_date = date(2020, 01, 20)
-    self.assertEqual(
-        calculate_days_with_cost_reduction(announcement_date, DAYS_PER_YEAR),
-        [346] + [365] * NPV_CALCULATION_DURATION
-    )
-
-    announcement_date = date(2019, 01, 20)
-    self.assertEqual(
-        calculate_days_with_cost_reduction(announcement_date, DAYS_PER_YEAR),
-        [345] + [365] * NPV_CALCULATION_DURATION
-    )
+        amount_contract = calculate_amount_contract(data)
+        self.assertEqual(
+            _str(amount_contract),
+            _str(PAYMENTS_PERCENTAGE_CHANGING
+                 ['calculated'][i]['amountContract'])
+        )
