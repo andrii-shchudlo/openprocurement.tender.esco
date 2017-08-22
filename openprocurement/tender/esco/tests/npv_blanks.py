@@ -1,5 +1,4 @@
 from copy import deepcopy
-from datetime import date
 from openprocurement.tender.esco.npv_calculation import (
     calculate_amount_perfomance,
     calculate_amount_contract,

@@ -3,7 +3,6 @@ from fractions import Fraction
 from openprocurement.tender.esco.constants import DAYS_PER_YEAR, NPV_CALCULATION_DURATION
 
 
-
 def calculate_contract_duration(
         contract_duration_years,
         contract_duration_days,
