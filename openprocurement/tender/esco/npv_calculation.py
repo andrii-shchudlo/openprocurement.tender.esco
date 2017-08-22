@@ -53,7 +53,7 @@ def calculate_discount_coef(discount_rates):
     discount_coef = []
     coefficient = Fraction(1)
     for i in discount_rates:
-        coefficient = Fraction(coefficient, (Fraction(1)+Fraction(i)))
+        coefficient = Fraction(coefficient, (Fraction(1) + Fraction(i)))
         discount_coef.append(coefficient)
     return discount_coef
 
@@ -103,8 +103,8 @@ def calculate_income(client_cost_reductions, days_for_discount_rate, days_with_c
     count = 0
     income = []
     for i in client_cost_reductions:
-        income.append(Fraction(str(i)) * Fraction(Fraction(str(days_for_discount_rate[count])),
-                      Fraction(str(days_with_cost_reduction[count]))) - Fraction(str(client_payments[count])))
+        income.append(Fraction(str(i)) * Fraction(Fraction(days_for_discount_rate[count]),
+                      Fraction(days_with_cost_reduction[count])) - client_payments[count])
         count += 1
     return income
 
