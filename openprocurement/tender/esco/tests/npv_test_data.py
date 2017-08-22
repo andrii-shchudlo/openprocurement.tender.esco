@@ -28,48 +28,48 @@ CONTRACT_DURATION_CHANGING = {
     'NBUdiscountRate': NBU_DISCOUNT_RATE,
     'calculated': [
         {
-            'amountContract': 2625,
-            'amountPerformance': 650.193823614962
+            'amountContract': 2625.00297260274,
+            'amountPerformance': 650.195041290903
         },
         {
-            'amountContract': 0.479452054794521,
-            'amountPerformance': 1810.49202999925
+            'amountContract': 0.47947407407407,
+            'amountPerformance': 1810.49606787280
         },
         {
-            'amountContract': 530.27397260274,
-            'amountPerformance': 1390.67464457115
+            'amountContract': 530.276945205479,
+            'amountPerformance': 1390.67586224709
         },
         {
-            'amountContract': 530.753424657534,
-            'amountPerformance': 1390.35279031706
+            'amountContract': 530.756397260274,
+            'amountPerformance': 1390.35400799300
         },
         {
-            'amountContract': 531.232876712329,
-            'amountPerformance': 1390.03093606298
+            'amountContract': 531.235849315069,
+            'amountPerformance': 1390.03215373892
         },
         {
-            'amountContract': 531.712328767123,
-            'amountPerformance': 1389.70908180889
+            'amountContract': 531.715301369863,
+            'amountPerformance': 1389.71029948483
         },
         {
-            'amountContract': 532.191780821918,
-            'amountPerformance': 1389.38722755481
+            'amountContract': 532.194753424658,
+            'amountPerformance': 1389.38844523075
         },
         {
-            'amountContract': 707.191780821918,
-            'amountPerformance': 1280.67201284187
+            'amountContract': 707.194753424658,
+            'amountPerformance': 1280.67323051781
         },
         {
-            'amountContract': 882.191780821918,
-            'amountPerformance': 1184.03626643037
+            'amountContract': 882.194753424658,
+            'amountPerformance': 1184.03748410631
         },
         {
-            'amountContract': 1057.191780821920,
-            'amountPerformance': 1098.13782517570
+            'amountContract': 1057.19475342466,
+            'amountPerformance': 1098.13904285164
         },
         {
-            'amountContract': 1232.191780821920,
-            'amountPerformance': 1021.78365517155
+            'amountContract': 1232.19475342466,
+            'amountPerformance': 1021.78487284750
         },
     ]
 }
